@@ -9,7 +9,7 @@ typedef char bool;
 
 void run()
 {
-    int apples = 6;
+    int apples = 6 ;
     int oranges = 6;
 
     apples += 1;

@@ -10,6 +10,6 @@ int main()
   #endif
 
   #if !defined(RUNFAST)
-  printf("Square of 2: %d\n", SQUARE(2));
+  printf("Square of 2: %d\n", SQUARE(2)) ;
   #endif
 }
