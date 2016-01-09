@@ -5,4 +5,4 @@ all:
 	cc -Wall -std=c99 -g ex3.c -o ex3
 
 clean: 
-	rm -f ex1 ex3
+	find . -type f -executable -exec rm {} \;
