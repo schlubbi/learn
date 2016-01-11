@@ -20,7 +20,7 @@ int main()
 	printf("first character of first element: %c\n", *(*pointer_to_array+ 1));
 
 	printf("second element: %s\n", *(pointer_to_array + 1));
-	printf("first character of second element: %c\n", (**(pointer_to_array + 1)));
+	printf("first character of second element: %c\n", (*(*(pointer_to_array +1) + 1)));
 
 	char str[] = "abc";
 	char * p = &str;
