@@ -55,7 +55,7 @@ struct Connection *Database_open(const char *filename, char mode)
 	if(mode == 'c') {
 		conn->file = fopen(filename, "w");
 	} else {
-		conn->file = fopen(filename, "r");
+		conn->file = fopen(filename, "r+");
 
 		if(conn->file) {
 			Database_load(conn);
