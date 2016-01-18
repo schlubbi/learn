@@ -1,8 +1,8 @@
-CFLAGS=-Wall -g
+CFLAGS=-Wall -g -std=c99
 
-all:
-	cc -Wall -std=c99 -g ex1.c -o ex1
-	cc -Wall -std=c99 -g ex3.c -o ex3
+all: ex19
+
+ex19: object.o
 
 clean: 
 	find . -type f -executable -exec rm {} \;
