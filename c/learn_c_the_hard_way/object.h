@@ -10,7 +10,7 @@ typedef struct {
 	int (*init)(void *self);
 	void (*describe)(void *self);
 	void (*destroy)(void *self);
-	void (*move)(void *self, Direction direction);
+	void *(*move)(void *self, Direction direction);
 	int (*attack)(void *self, int damage);
 } Object;
 

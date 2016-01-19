@@ -11,7 +11,7 @@ typedef struct {
 int Monster_attack(void *self, int damage);
 int Monster_init(void *self);
 
-typedef struct {
+struct Room {
 	Object proto;
 
 	Monster *bad_guy;
@@ -20,7 +20,9 @@ typedef struct {
 	struct Room *south;
 	struct Room *east;
 	struct Room *west;
-} Room;
+};
+
+typedef struct Room Room;
 
 void *Room_move(void *self, Direction direction);
 int Room_attack(void *self, int damage);
