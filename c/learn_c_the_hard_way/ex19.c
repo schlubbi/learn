@@ -151,7 +151,7 @@ int process_input(Map *game)
 	int damage = rand() % 4;
 
 	switch(ch) {
-		case -1:
+		case EOF:
 			printf("Giving up? You suck.\n");
 			return 0;
 			break;
