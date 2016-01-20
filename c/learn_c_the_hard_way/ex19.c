@@ -60,11 +60,11 @@ void *Room_move(void *self, Direction direction)
 		next->_(describe)(next);
 	}
 
-	return next;		
+	return next;
 }
 
 int Room_attack(void *self, int damage)
-{ 
+{
 	Room *room = self;
 	Monster *monster = room->bad_guy;
 
