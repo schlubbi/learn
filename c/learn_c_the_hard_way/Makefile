@@ -6,4 +6,4 @@ ex19: object.o
 
 clean: 
 	find . -type f -executable -exec rm {} \;
-	rm *.o
+	find . -type f -name '*.o' -exec rm {} \;
