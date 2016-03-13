@@ -102,13 +102,13 @@ Shell CURL_SH = {
 
 Shell CONFIGURE_SH = {
   .exe = "./configure",
-  .dir = "/tmp/pkg-build,
+  .dir = "/tmp/pkg-build",
   .args = {"configure", "OPTS", NULL}
 };
 
 Shell MAKE_SH = {
   .exe = "make",
-  .dir = "/tmp/pkg-build,
+  .dir = "/tmp/pkg-build",
   .args = {"make", "OPTS", NULL}
 };
 

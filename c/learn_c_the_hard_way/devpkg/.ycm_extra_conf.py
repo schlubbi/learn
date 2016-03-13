@@ -38,8 +38,10 @@ flags = [
     'c',
     '-DNDEBUG',
     '-Wall',
-    '-I${PREFIX}/apr/include/apr-1',
-    '-I${PREFIX}/apr/include/apr-util-1'
+    '-I/usr/local/apr/include/apr-1',
+    '-I/usr/local/apr/include/apr-util-1',
+    '-L/usr/local/apr/lib -Wl,-R/usr/local/apr/lib',
+    '-L/usr/local/apr/lib -lapr-1 -lrt -lcrypt  -lpthread -ldl'
 ]
 
 
