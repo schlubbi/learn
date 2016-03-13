@@ -1,7 +1,7 @@
 PREFIX?=/usr/local/apr
-CFLAGS= -g -O2 -pthread -Wall -I/usr/local/apr/include/apr-1  -I${PREFIX}/apr/include/apr-util-1 -D_LARGEFILE64_SOURCE
-LDADD=-L/usr/local/apr/lib -Wl,-R/usr/local/apr/lib
-LDFLAGS=-L/usr/local/apr/lib -lapr-1 -lrt -lcrypt  -lpthread -ldl
+CFLAGS=-g -Wall -I$(PREFIX)/include/apr-1 -I$(PREFIX)/include/aprutil-1
+LDFLAGS=-L/usr/local/apr/lib/
+LDLIBS=-lapr-1 -pthread -laprutil-1
 
 all: devpkg
 
