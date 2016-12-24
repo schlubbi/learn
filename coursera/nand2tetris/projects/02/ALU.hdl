@@ -52,22 +52,11 @@ CHIP ALU {
     Mux16(a=xAndY,b=xPlusY,sel=f,out=afterF);
 
     Not16(in=afterF,out=NotAfterF);
-    Mux16(a=afterF,b=NotAfterF,sel=no,out=finalOut,
-        out[0..1]=firstSel,
-        out[2..3]=secondSel,
-        out[4..5]=thirdSel,
-        out[6..7]=fourthSel,
-        out[8..9]=fifthSel,
-        out[10..11]=sixthSel,
-        out[12..13]=seventhSel,
-        out[14..15]=eigthSel,
-        out[15]=ng,out=out);
-    DMux4Way(in=true,sel=firstSel,a=fa);
-    DMux4Way(in=fa,sel=secondSel,a=sa);
-    DMux4Way(in=sa,sel=thirdSel,a=ta);
-    DMux4Way(in=ta,sel=fourthSel,a=foa);
-    DMux4Way(in=foa,sel=fifthSel,a=fia);
-    DMux4Way(in=fia,sel=sixthSel,a=sia);
-    DMux4Way(in=sia,sel=seventhSel,a=sea);
-    DMux4Way(in=sea,sel=eigthSel,a=zr);
+    Mux16(a=afterF,b=NotAfterF,sel=no,out=finalOut,out[15]=singedBit,out[15]=ng,out=out);
+    
+    Not16(in=finalOut,out=NotFinalOut);
+    Add16(a=NotFinalOut,b[0..15]=false,b[0]=true,out=NotOutPlusOne,out[15]=otherSignedBit);
+
+    Or(a=singedBit,b=otherSignedBit,out=signedOrSigned);
+    Not(in=signedOrSigned,out=zr);
 }
