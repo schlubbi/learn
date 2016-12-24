@@ -42,5 +42,35 @@ CHIP ALU {
         ng; // 1 if (out < 0),  0 otherwise
 
     PARTS:
-   // Put you code here:
+    Mux16(a=x,b[0..15]=false,sel=zx,out=afterZx);
+    Not16(in=afterZx,out=NotX);
+    Mux16(a=afterZx,b=NotX,sel=nx,out=afterNx);
+
+    Mux16(a=y,b[0..15]=false,sel=zy,out=afterZy);
+    Not16(in=afterZy,out=NotY);
+    Mux16(a=afterZy,b=NotY,sel=ny,out=afterNy);
+
+    Add16(a=afterNx,b=afterNy,out=xPlusY);
+    And16(a=afterNx,b=afterNy,out=xAndY);
+    Mux16(a=xAndY,b=xPlusY,sel=f,out=afterF);
+
+    Not16(in=afterF,out=NotAfterF);
+    Mux16(a=afterF,b=NotAfterF,sel=no,out=finalOut,
+        out[0..1]=firstSel,
+        out[2..3]=secondSel,
+        out[4..5]=thirdSel,
+        out[6..7]=fourthSel,
+        out[8..9]=fifthSel,
+        out[10..11]=sixthSel,
+        out[12..13]=seventhSel,
+        out[14..15]=eigthSel,
+        out[15]=ng,out=out);
+    DMux4Way(in=true,sel=firstSel,a=fa);
+    DMux4Way(in=fa,sel=secondSel,a=sa);
+    DMux4Way(in=sa,sel=thirdSel,a=ta);
+    DMux4Way(in=ta,sel=fourthSel,a=foa);
+    DMux4Way(in=foa,sel=fifthSel,a=fia);
+    DMux4Way(in=fia,sel=sixthSel,a=sia);
+    DMux4Way(in=sia,sel=seventhSel,a=sea);
+    DMux4Way(in=sea,sel=eigthSel,a=zr);
 }
