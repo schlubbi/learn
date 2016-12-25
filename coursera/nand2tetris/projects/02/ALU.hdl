@@ -52,7 +52,7 @@ CHIP ALU {
     Mux16(a=xAndY,b=xPlusY,sel=f,out=afterF);
 
     Not16(in=afterF,out=NotAfterF);
-    Mux16(a=afterF,b=NotAfterF,sel=no,out=finalOut,out[15]=singedBit,out[15]=ng,out=out);
+    Mux16(a=afterF,b=NotAfterF,sel=no,out=finalOut,out=out,out[15]=singedBit,out[15]=ng);
     
     Not16(in=finalOut,out=NotFinalOut);
     Add16(a=NotFinalOut,b[0..15]=false,b[0]=true,out=NotOutPlusOne,out[15]=otherSignedBit);
