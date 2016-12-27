@@ -12,6 +12,16 @@ M=D // set SCREENSZIE to the last bit of the SCREEN address space
 (ENDLESSLOOP)
 @i
 M=0 // init i = 0
+
+@KBD
+D=M
+
+@BLACK
+D;JNE
+
+@COLOR
+M=0
+
 (LOOP)
     @i
     D=M
@@ -28,27 +38,13 @@ M=0 // init i = 0
     @R1
     M=D
 
-    @KBD
+    @COLOR
     D=M
 
-    @BLACK
-    D;JNE
-
     @R1
     A=M
-    M=0 // SET RAM[SCREEN+i] to 0 (white)
-    @CONTINUE
-    0;JMP
-
-    (BLACK)
-    @R1
-    A=M
-    M=-1 // SET RAM[SCREEN+i] to -1 (black)
-    @CONTINUE
-    0;JMP
-    
-    
-    (CONTINUE)
+    M=D
+   
     @i
     M=M+1 // increment i
     
@@ -56,4 +52,10 @@ M=0 // init i = 0
     0;JMP
 (END)
     @ENDLESSLOOP
+    0;JMP
+
+(BLACK)
+    @COLOR
+    M=-1
+    @LOOP
     0;JMP
