@@ -7,40 +7,29 @@
 // (R0, R1, R2 refer to RAM[0], RAM[1], and RAM[2], respectively.)
 
 // Put your code here.
-
-
 @i
 M=0 // init i to 0
 
-@R0
-D=M
-@NEGATIVER0
-D;JLT
-@multiplicand
-M=D
 @R2
 M=0
+@R3
+M=0
 
-@SECONDREGISTER
-0;JMP
+@R0
+D=M
+@NEGATER0
+D;JLT
 
-(SECONDREGISTER)
-    @R1
-    D=M
-    @NEGATIVER1
-    D;JLT
-    @multiplier
-    M=D
-    @LOOP
-    0;JMP
+@R3
+M=M+D // save positive value of R0 in R3
 
 (LOOP)
     @i
     D=M
-    @multiplicand
-    D=D-M
+    @R3
+    D=M-D
     @RESULT
-    D;JEQ // compare i and R1
+    D;JEQ // compare i and R3
 
     @R1
     D=M
@@ -54,21 +43,13 @@ M=0
     0;JMP // next iteration
 
 (RESULT)
-    @negate1
+    @R0
     D=M
-    @negate2
-    D=M-D
-    @NONNEGATERESULT
-    D;JEQ
-    D;JLT
+    @END
+    D;JGE
     @R2
     D=!M
     M=D+1
-    @END
-    0;JMP
-    
-
-(NONNEGATERESULT)
     @END
     0;JMP
 
@@ -76,24 +57,10 @@ M=0
     @END
     0;JMP
 
-(NEGATIVER0)
-    @R0
-    D=!M
-    @multiplicand
-    M=D+1
-
-    @negate0
-    M=1
-    @SECONDREGISTER
-    0;JMP
-
-(NEGATIVER1)
-    @R1
-    D=!M
-    @multiplier
-    M=D+1
-
-    @negate1
-    M=1
+(NEGATER0)
+    @R3
+    D=!D
+    D=D+1
+    M=M+D // convert R0 to positive value and save in R3
     @LOOP
     0;JMP
